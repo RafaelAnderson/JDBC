@@ -4,16 +4,10 @@ import org.rponte.java.jdbc.model.Categoria;
 import org.rponte.java.jdbc.model.Producto;
 import org.rponte.java.jdbc.repositorio.ProductoRepositorioImpl;
 import org.rponte.java.jdbc.repositorio.Repositorio;
-import org.rponte.java.jdbc.util.ConexionBaseDatos;
-
-import java.sql.*;
 
 public class EjemploJdbc {
     public static void main(String[] args) {
 
-        try (
-                Connection conn = ConexionBaseDatos.getInstance()
-        ) {
             Repositorio<Producto> repositorio = new ProductoRepositorioImpl();
 
             System.out.println("========== listar ==========");
@@ -41,13 +35,10 @@ public class EjemploJdbc {
             Categoria categoria1 = new Categoria();
             categoria1.setId(2L);
             producto1.setCategoria(categoria1);
-            repositorio.guardar(producto1);
+            //repositorio.guardar(producto1);
             System.out.println("Producto editado con éxito");
 
             System.out.println("========== listar todo ==========");
             repositorio.listar().forEach(System.out::println);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 }
